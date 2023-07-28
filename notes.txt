@@ -1,0 +1,2 @@
+CrudRepository does not need @Repository. Spring automatically creates a class that implements the interface that
+extends CrudRepository and creates a bean.
