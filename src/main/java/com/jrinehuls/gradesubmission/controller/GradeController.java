@@ -42,4 +42,8 @@ public class GradeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Grade>> getGrades() {
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
