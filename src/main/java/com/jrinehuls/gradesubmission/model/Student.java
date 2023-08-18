@@ -1,4 +1,4 @@
-package com.jrinehuls.gradesubmission.entity;
+package com.jrinehuls.gradesubmission.model;
 
 import jakarta.persistence.*;
 

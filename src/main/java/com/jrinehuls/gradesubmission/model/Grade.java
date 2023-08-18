@@ -1,4 +1,4 @@
-package com.jrinehuls.gradesubmission.entity;
+package com.jrinehuls.gradesubmission.model;
 
 public class Grade {
 

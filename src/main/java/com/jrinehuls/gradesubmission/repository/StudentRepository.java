@@ -1,6 +1,6 @@
 package com.jrinehuls.gradesubmission.repository;
 
-import com.jrinehuls.gradesubmission.entity.Student;
+import com.jrinehuls.gradesubmission.model.Student;
 import org.springframework.data.repository.CrudRepository;
 
 

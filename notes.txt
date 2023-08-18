@@ -1,2 +1,15 @@
 CrudRepository does not need @Repository. Spring automatically creates a class that implements the interface that
 extends CrudRepository and creates a bean.
+See OpenAPI http://localhost:8080/v3/api-docs
+See Swagger http://localhost:8080/swagger-ui/index.html
+
+
+TODO:
+Create API documentation (Section 20)
+Add validators (See section 10)
+Add Resource not found exception (Workbook 8.1, I believe)
+Add Application exception handler with @ControllerAdvice for RNFException and for 400 with for validators
+    (Workbooks 8.1, 8.2, 8.3)
+Create Javadocs
+Add unit and integration tests with Mockito and JUnit (Section 16 & Section 21)
+Create a custom validator (Section 10 115, 116, 117)

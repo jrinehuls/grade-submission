@@ -1,6 +1,6 @@
 package com.jrinehuls.gradesubmission.controller;
 
-import com.jrinehuls.gradesubmission.entity.Grade;
+import com.jrinehuls.gradesubmission.model.Grade;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
