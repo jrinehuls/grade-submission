@@ -1,11 +1,15 @@
 package com.jrinehuls.gradesubmission.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "student")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
     @Id
