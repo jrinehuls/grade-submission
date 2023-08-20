@@ -18,10 +18,11 @@ See Database http://localhost:8080/h2
 
 TODO:
 Create API documentation (Section 20)
+Add exception handler for course and grade.
 Add unit and integration tests with Mockito and JUnit (Section 16 & Section 21)
 Create a custom validator (Section 10: 115, 116, 117)
 
 Build app for students, courses, and grades
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 186
+Paused at lesson 194

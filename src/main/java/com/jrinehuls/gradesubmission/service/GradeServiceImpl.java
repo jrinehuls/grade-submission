@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.service;
 
 import java.util.List;
 
+import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.repository.GradeRepository;
@@ -14,22 +15,27 @@ public class GradeServiceImpl implements GradeService {
 
     GradeRepository gradeRepository;
     StudentService studentService;
+    CourseService courseService;
     
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return gradeRepository.findByStudentId(studentId);
+        return gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
     }
 
     @Override
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
         Student student = studentService.getStudent(studentId); // In 185, he called studentRepository
+        Course course = courseService.getCourse(courseId);
         grade.setStudent(student);
+        grade.setCourse(course);
         return gradeRepository.save(grade);
     }
 
     @Override
     public Grade updateGrade(String score, Long studentId, Long courseId) {
-        return null;
+        Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        grade.setScore(score);
+        return gradeRepository.save(grade);
     }
 
     @Override

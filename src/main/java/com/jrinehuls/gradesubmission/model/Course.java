@@ -1,11 +1,14 @@
 package com.jrinehuls.gradesubmission.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 public class Course {
@@ -14,14 +17,21 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
+    @NonNull
     private String subject;
 
-    @Column
+    @Column(nullable = false)
+    @NonNull
     private String code;
 
-    @Column
+    @Column(nullable = false)
+    @NonNull
     private String description;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Grade> grades;
 
 
 }
