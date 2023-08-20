@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Student {
 
     @Column(name = "birth_date", nullable = false)
     @NotNull(message = "birthDate filed is required.")
+    @Past(message = "Birth date must be in the past")
     private LocalDate birthDate;
 
 

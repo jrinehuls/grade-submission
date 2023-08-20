@@ -1,5 +1,6 @@
 package com.jrinehuls.gradesubmission.model;
 
+import com.jrinehuls.gradesubmission.Annotations.Score;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,7 @@ public class Grade {
     private Long id;
 
     @Column
+    @Score
     private String score;
 
 
