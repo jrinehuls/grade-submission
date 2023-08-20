@@ -3,8 +3,7 @@ package com.jrinehuls.gradesubmission.controller;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.service.StudentService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
     StudentService studentService;
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -28,7 +28,7 @@ public class StudentServiceTest {
 
     @Test
     public void testGetStudent() {
-        Student repoStudent = new Student(1L, "Justin", LocalDate.of(1985, Month.MARCH, 5));
+        Student repoStudent = new Student("Justin", LocalDate.of(1985, Month.MARCH, 5));
         when(studentRepository.findById(1L)).thenReturn(Optional.of(repoStudent));
         Student student = studentService.getStudent(1L);
         Assertions.assertEquals(repoStudent.getBirthDate().getMonth().getValue(), student.getBirthDate().getMonthValue());

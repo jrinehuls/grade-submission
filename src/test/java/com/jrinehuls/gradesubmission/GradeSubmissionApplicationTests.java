@@ -30,8 +30,8 @@ class GradeSubmissionApplicationTests {
 	MockMvc mockMvc;
 
 	Student[] students = {
-			new Student(1L, "Justin", LocalDate.of(1985, Month.MARCH, 5)),
-			new Student(2L, "Jen", LocalDate.of(1984, Month.JULY, 1))
+			new Student("Justin", LocalDate.of(1985, Month.MARCH, 5)),
+			new Student("Jen", LocalDate.of(1984, Month.JULY, 1))
 	};
 
 	@BeforeEach
