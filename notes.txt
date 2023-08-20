@@ -18,4 +18,4 @@ Create a custom validator (Section 10: 115, 116, 117)
 Build app for students, courses, and grades
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 185
+Paused at lesson 186
