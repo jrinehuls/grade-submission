@@ -1,10 +1,9 @@
-package com.jrinehuls.gradesubmission.Annotations;
+package com.jrinehuls.gradesubmission.annotations;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class GradeValidator implements ConstraintValidator<Score, String > {

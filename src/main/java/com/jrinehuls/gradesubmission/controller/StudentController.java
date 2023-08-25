@@ -29,7 +29,7 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> saveStudent(@Valid @RequestBody Student student) {
         return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }

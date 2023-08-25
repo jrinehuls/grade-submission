@@ -1,23 +1,22 @@
 package com.jrinehuls.gradesubmission.model;
 
-import com.jrinehuls.gradesubmission.Annotations.GradeValidator;
-import com.jrinehuls.gradesubmission.Annotations.Score;
+import com.jrinehuls.gradesubmission.annotations.Score;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Entity
 public class Grade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     @Score
+    @Column(nullable = false)
     private String score;
 
     @ManyToOne(optional = false)
@@ -27,8 +26,5 @@ public class Grade {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-
-
 
 }

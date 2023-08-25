@@ -22,18 +22,18 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     @Size.List({
-            @Size(min = 10, message = "Name must not contain at least 10 characters"),
+            @Size(min = 10, message = "Name must contain at least 10 characters"),
             @Size(max = 50, message = "Name must not exceed 50 characters")
     })
     @NonNull // Lombok to make it a required arg
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "birth_date", nullable = false)
-    @NotNull(message = "birthDate filed is required.")
-    @Past(message = "Birth date must be in the past")
+    @NotNull(message = "birthDate field is required.")
+    @Past(message = "Birth date must be in the past.")
     @NonNull // Lombok to make it a required arg
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
     @JsonIgnore // If not here, would call grades, which calls student, which calls grades, which calls student

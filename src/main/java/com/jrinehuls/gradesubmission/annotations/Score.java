@@ -1,6 +1,5 @@
-package com.jrinehuls.gradesubmission.Annotations;
+package com.jrinehuls.gradesubmission.annotations;
 
-import com.jrinehuls.gradesubmission.model.Grade;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

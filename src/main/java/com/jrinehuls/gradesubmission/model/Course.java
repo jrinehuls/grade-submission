@@ -6,27 +6,27 @@ import lombok.*;
 
 import java.util.List;
 
-@Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Getter
 @Setter
+@Entity
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     @NonNull
+    @Column(nullable = false)
     private String subject;
 
-    @Column(nullable = false)
     @NonNull
+    @Column(nullable = false)
     private String code;
 
-    @Column(nullable = false)
     @NonNull
+    @Column(nullable = false)
     private String description;
 
     @JsonIgnore
