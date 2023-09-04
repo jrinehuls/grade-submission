@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 
 public class GradeNotFoundException extends RuntimeException {
 
-    public GradeNotFoundException(Long id) {
-        super("Grade with id '" + id + ", not found.");
+    public GradeNotFoundException(Long studentId, Long courseId) {
+        super(String.format("Grade not found for student with id of %d and course with id of %d.", studentId, courseId));
     }
 
     public HttpStatus getStatusCode() {

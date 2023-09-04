@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
+import com.jrinehuls.gradesubmission.exception.GradeNotFoundException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
 import com.jrinehuls.gradesubmission.model.Student;
@@ -22,7 +23,8 @@ public class GradeServiceImpl implements GradeService {
     
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        return gradeRepository.findByStudentIdAndCourseId(studentId, courseId)
+                .orElseThrow(() -> new GradeNotFoundException(studentId, courseId));
     }
 
     @Override
@@ -36,14 +38,17 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade updateGrade(String score, Long studentId, Long courseId) {
-        Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId)
+                .orElseThrow(() -> new GradeNotFoundException(studentId, courseId));
         grade.setScore(score);
         return gradeRepository.save(grade);
     }
 
     @Override
     public void deleteGrade(Long studentId, Long courseId) {
-        
+        Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId)
+                .orElseThrow(() -> new GradeNotFoundException(studentId, courseId));
+        gradeRepository.deleteById(grade.getId());
     }
 
     @Override

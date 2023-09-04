@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
+import com.jrinehuls.gradesubmission.exception.CourseNotFoundException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.repository.CourseRepository;
 import com.jrinehuls.gradesubmission.service.CourseService;
@@ -16,7 +17,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course getCourse(Long id) {
-        return courseRepository.findById(id).get();
+        return courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
+    }
+
+    @Override
+    public List<Course> getCourses() {
+        return (List<Course>) courseRepository.findAll();
     }
 
     @Override
@@ -26,12 +32,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(Long id) {
-        courseRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Course> getCourses() {
-        return (List<Course>) courseRepository.findAll();
+        Course course = courseRepository.findById(id).orElseThrow(() -> new CourseNotFoundException(id));
+        courseRepository.deleteById(course.getId());
     }
 
 }

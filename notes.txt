@@ -1,15 +1,14 @@
 CrudRepository does not need @Repository. Spring automatically creates a class that implements the interface that
 extends CrudRepository and creates a bean.
-@NotBlank does not all "    ", but @NotEmpty does
+@NotBlank does not allow "    ", but @NotEmpty does
 
 Could not find or load main class: open terminal -> run ./mvnw clean
 
 Child table manages FK. In this case, one student has many grades. Student is parent, grade is child.
 Grade will have the student_id as a FK to reference the student associated to that grade.
 From parent (student) perspective, it's 1:M, but from child (grade) perspective, it's M:1.
-@MappedBy tells Spring JPA the other table holds the FK, so don't go making another join table or anything
-@MappedBy goes on the side that isn't the owner of the relationship (The one without the FK).
-
+@MappedBy tells Spring JPA the other table holds the FK, so don't go making another join table or anything.
+@MappedBy goes on the side that isn't the owner of the relationship (The one without the FK, AKA the parent).
 
 See OpenAPI http://localhost:8080/v3/api-docs
 See Swagger http://localhost:8080/swagger-ui/index.html
@@ -21,9 +20,9 @@ SELECT * FROM GRADE;
 
 TODO:
 Create API documentation (Section 20)
-Add exception handler for course and grade.
+Handle exceptions for course and grade in Controller Advice class.
 Add unit and integration tests with Mockito and JUnit (Section 16 & Section 21)
-Create a custom validator (Section 10: 115, 116, 117)
+Create some custom validators (Section 10: 115, 116, 117)
 
 For repos that find by id, return optionals and use or else throw.
 Don't allow course code to be repeated when posting a new course.
@@ -31,8 +30,8 @@ Don't allow 2 grades with same student id and course id.
 
 For deleting, call find by id(s) to return the object to delete (or else throw), then delete it.
 
-Build app for students, courses, and grades.
-FInd a way to update grade not only for score, but course and student too (Maybe query params, if body not achievable).
+Update students and courses.
+Find a way to update grade not only for score, but course and student too (Maybe query params, if body not achievable).
 Spring security (Basic for practice, then JWT instead)
 
 Paused at lesson 194
