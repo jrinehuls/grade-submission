@@ -1,6 +1,8 @@
 CrudRepository does not need @Repository. Spring automatically creates a class that implements the interface that
 extends CrudRepository and creates a bean.
 @NotBlank does not allow "    ", but @NotEmpty does
+@NotNUll probably enforces that the field must exist in the request. @RequiredArgsConstructor probably enforces this
+    with @NonNull.
 
 Could not find or load main class: open terminal -> run ./mvnw clean
 
@@ -30,8 +32,12 @@ Create API documentation (Section 20)
 Add unit and integration tests with Mockito and JUnit (Section 16 & Section 21)
 Create some custom validators (Section 10: 115, 116, 117)
 
+What if a birthdate is not formatted correctly or is just ""?
+
 Handle exceptions for course and grade not found in Controller Advice class.
 Handle Data integrity exception for unique constraints, like duplicate course codes.
+
+Try posting grade with score of "" and with no score and see what happens.
 
 Update students and courses.
 
@@ -41,4 +47,4 @@ Find a way to update grade not only for score, but course and student too (Maybe
 
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 19
+Paused at lesson 198 - Task 5

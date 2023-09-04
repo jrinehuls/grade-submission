@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = GradeValidator.class)
+@Constraint(validatedBy = ScoreValidator.class)
 public @interface Score {
 
     // TODO: Find a way to not hard code this. Message must be constant, so can't call getter.

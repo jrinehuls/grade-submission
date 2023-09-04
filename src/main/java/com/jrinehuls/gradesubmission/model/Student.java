@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
@@ -27,12 +28,12 @@ public class Student {
             @Size(max = 50, message = "Name must not exceed 50 characters")
     })
     @NonNull // Lombok to make it a required arg
+    @NotBlank(message = "Name cannot be blank")
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull(message = "birthDate field is required.")
-    @Past(message = "Birth date must be in the past.")
     @NonNull // Lombok to make it a required arg
+    @Past(message = "Birth date must be in the past.")
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 

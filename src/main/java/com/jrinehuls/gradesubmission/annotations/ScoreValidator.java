@@ -6,7 +6,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import java.util.Arrays;
 import java.util.List;
 
-public class GradeValidator implements ConstraintValidator<Score, String > {
+public class ScoreValidator implements ConstraintValidator<Score, String > {
 
     final List<String> scores = Arrays.asList(
             "A+", "A", "A-",
