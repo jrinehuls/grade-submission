@@ -22,7 +22,7 @@ public class Course {
     private String subject;
 
     @NonNull
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String code;
 
     @NonNull

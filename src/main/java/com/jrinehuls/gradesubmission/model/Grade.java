@@ -9,6 +9,9 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"student_id", "course_id"})
+})
 public class Grade {
 
     @Id
