@@ -1,10 +1,11 @@
-package com.jrinehuls.gradesubmission.service;
+package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
 import com.jrinehuls.gradesubmission.exception.StudentNotFoundException;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.repository.StudentRepository;
+import com.jrinehuls.gradesubmission.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

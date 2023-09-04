@@ -1,4 +1,4 @@
-package com.jrinehuls.gradesubmission.service;
+package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
@@ -6,6 +6,9 @@ import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.repository.GradeRepository;
+import com.jrinehuls.gradesubmission.service.CourseService;
+import com.jrinehuls.gradesubmission.service.GradeService;
+import com.jrinehuls.gradesubmission.service.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

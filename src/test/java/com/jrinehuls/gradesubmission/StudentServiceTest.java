@@ -2,8 +2,7 @@ package com.jrinehuls.gradesubmission;
 
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.repository.StudentRepository;
-import com.jrinehuls.gradesubmission.service.StudentService;
-import com.jrinehuls.gradesubmission.service.StudentServiceImpl;
+import com.jrinehuls.gradesubmission.service.impl.StudentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;

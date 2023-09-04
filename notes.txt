@@ -15,6 +15,9 @@ See OpenAPI http://localhost:8080/v3/api-docs
 See Swagger http://localhost:8080/swagger-ui/index.html
 See Database http://localhost:8080/h2
 
+SELECT * FROM STUDENT;
+SELECT * FROM COURSE;
+SELECT * FROM GRADE;
 
 TODO:
 Create API documentation (Section 20)
@@ -23,10 +26,13 @@ Add unit and integration tests with Mockito and JUnit (Section 16 & Section 21)
 Create a custom validator (Section 10: 115, 116, 117)
 
 For repos that find by id, return optionals and use or else throw.
-Don't allow course code to be repeated.
-Don't allow 2 grades with same student id and course id
+Don't allow course code to be repeated when posting a new course.
+Don't allow 2 grades with same student id and course id.
 
-Build app for students, courses, and grades
+For deleting, call find by id(s) to return the object to delete (or else throw), then delete it.
+
+Build app for students, courses, and grades.
+FInd a way to update grade not only for score, but course and student too (Maybe query params, if body not achievable).
 Spring security (Basic for practice, then JWT instead)
 
 Paused at lesson 194
