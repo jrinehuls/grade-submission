@@ -10,6 +10,8 @@ From parent (student) perspective, it's 1:M, but from child (grade) perspective,
 @MappedBy tells Spring JPA the other table holds the FK, so don't go making another join table or anything.
 @MappedBy goes on the side that isn't the owner of the relationship (The one without the FK, AKA the parent).
 
+If you get a transactional error, in repo class, add @Transactional to the JPA method you created.
+
 See OpenAPI http://localhost:8080/v3/api-docs
 See Swagger http://localhost:8080/swagger-ui/index.html
 See Database http://localhost:8080/h2
@@ -32,6 +34,8 @@ For deleting, call find by id(s) to return the object to delete (or else throw),
 
 Update students and courses.
 Find a way to update grade not only for score, but course and student too (Maybe query params, if body not achievable).
+    For body, maybe add student id and course id to grade entity as optional constructor args. If not present, set to
+    values in path variable, else, set to values in request. In impl set values using setters.
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 194
+Paused at lesson 196

@@ -48,22 +48,23 @@ public class GradeServiceImpl implements GradeService {
     public void deleteGrade(Long studentId, Long courseId) {
         Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId)
                 .orElseThrow(() -> new GradeNotFoundException(studentId, courseId));
+        System.out.println(grade.getId());
         gradeRepository.deleteById(grade.getId());
     }
 
     @Override
     public List<Grade> getStudentGrades(Long studentId) {
-        return null;
+        return gradeRepository.findByStudentId(studentId);
     }
 
     @Override
     public List<Grade> getCourseGrades(Long courseId) {
-        return null;
+        return gradeRepository.findByCourseId(courseId);
     }
 
     @Override
     public List<Grade> getAllGrades() {
-        return null;
+        return (List<Grade>) gradeRepository.findAll();
     }
 
 }
