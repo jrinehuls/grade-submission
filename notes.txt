@@ -47,4 +47,6 @@ Find a way to update grade not only for score, but course and student too (Maybe
 
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 198 - Task 5
+Paused at lesson 200
+
+https://www.learnthepart.com/

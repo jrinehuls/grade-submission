@@ -1,8 +1,8 @@
 package com.jrinehuls.gradesubmission;
 
 
-import com.jrinehuls.gradesubmission.exception.ErrorResponse;
-import com.jrinehuls.gradesubmission.exception.StudentNotFoundException;
+import com.jrinehuls.gradesubmission.exception.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -19,12 +19,20 @@ import java.util.ArrayList;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(StudentNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleStudentNoFoundException(StudentNotFoundException ex) {
+    @ExceptionHandler({StudentNotFoundException.class, CourseNotFoundException.class, GradeNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
         ArrayList<String> messages = new ArrayList<>();
         messages.add(ex.getMessage());
         ErrorResponse response = new ErrorResponse(messages);
         return new ResponseEntity<>(response, ex.getStatusCode());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(ex.getMessage());
+        ErrorResponse response = new ErrorResponse(messages);
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
     @Override
