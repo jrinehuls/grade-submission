@@ -18,24 +18,23 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     @NotBlank(message = "Subject cannot be blank")
+    @NonNull
     @Column(nullable = false)
     private String subject;
 
-    @NonNull
     @NotBlank(message = "Course code cannot be blank")
+    @NonNull
     @Column(nullable = false, unique = true)
     private String code;
 
-    @NonNull
     @NotBlank(message = "Description cannot be blank")
+    @NonNull
     @Column(nullable = false)
     private String description;
 
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Grade> grades;
-
 
 }

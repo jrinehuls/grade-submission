@@ -11,12 +11,13 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity
-@Table(name = "student")
+
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name = "student")
 public class Student {
 
     @Id
@@ -27,13 +28,13 @@ public class Student {
             @Size(min = 10, message = "Name must contain at least 10 characters"),
             @Size(max = 50, message = "Name must not exceed 50 characters")
     })
-    @NonNull // Lombok to make it a required arg
     @NotBlank(message = "Name cannot be blank")
+    @NonNull // Lombok to make it a required arg
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NonNull // Lombok to make it a required arg
     @Past(message = "Birth date must be in the past.")
+    @NonNull // Lombok to make it a required arg
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
