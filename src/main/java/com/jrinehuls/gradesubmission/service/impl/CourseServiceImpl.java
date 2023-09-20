@@ -2,11 +2,13 @@ package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
+import com.jrinehuls.gradesubmission.exception.conflict.CourseCollisionException;
 import com.jrinehuls.gradesubmission.exception.notfound.CourseNotFoundException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.repository.CourseRepository;
 import com.jrinehuls.gradesubmission.service.CourseService;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -27,7 +29,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course saveCourse(Course course) {
-        return courseRepository.save(course);
+        try {
+            return courseRepository.save(course);
+        } catch (DataIntegrityViolationException e) {
+            throw new CourseCollisionException(course.getCode());
+        }
     }
 
     @Override

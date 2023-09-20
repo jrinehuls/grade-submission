@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
+import com.jrinehuls.gradesubmission.exception.conflict.GradeCollisionException;
 import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
@@ -11,6 +12,7 @@ import com.jrinehuls.gradesubmission.service.CourseService;
 import com.jrinehuls.gradesubmission.service.GradeService;
 import com.jrinehuls.gradesubmission.service.StudentService;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
@@ -33,7 +35,11 @@ public class GradeServiceImpl implements GradeService {
         Course course = courseService.getCourse(courseId);
         grade.setStudent(student);
         grade.setCourse(course);
-        return gradeRepository.save(grade);
+        try {
+            return gradeRepository.save(grade);
+        } catch (DataIntegrityViolationException e) {
+            throw new GradeCollisionException(studentId, courseId);
+        }
     }
 
     @Override

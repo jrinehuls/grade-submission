@@ -2,6 +2,9 @@ package com.jrinehuls.gradesubmission;
 
 
 import com.jrinehuls.gradesubmission.exception.*;
+import com.jrinehuls.gradesubmission.exception.conflict.CourseCollisionException;
+import com.jrinehuls.gradesubmission.exception.conflict.GradeCollisionException;
+import com.jrinehuls.gradesubmission.exception.conflict.ResourceCollisionException;
 import com.jrinehuls.gradesubmission.exception.notfound.CourseNotFoundException;
 import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
 import com.jrinehuls.gradesubmission.exception.notfound.ResourceNotFoundException;
@@ -25,6 +28,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler({StudentNotFoundException.class, CourseNotFoundException.class, GradeNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ArrayList<String> messages = new ArrayList<>();
+        messages.add(ex.getMessage());
+        ErrorResponse response = new ErrorResponse(messages);
+        return new ResponseEntity<>(response, ex.getStatusCode());
+    }
+
+    @ExceptionHandler({CourseCollisionException.class, GradeCollisionException.class})
+    public ResponseEntity<ErrorResponse> handleResourceCollisionException(ResourceCollisionException ex) {
         ArrayList<String> messages = new ArrayList<>();
         messages.add(ex.getMessage());
         ErrorResponse response = new ErrorResponse(messages);
