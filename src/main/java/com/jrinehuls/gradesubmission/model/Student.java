@@ -1,5 +1,6 @@
 package com.jrinehuls.gradesubmission.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -34,6 +35,7 @@ public class Student {
     private String name;
 
     @Past(message = "Birth date must be in the past.")
+    @NotNull(message = "Please provide a birth date.")
     @NonNull // Lombok to make it a required arg
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;

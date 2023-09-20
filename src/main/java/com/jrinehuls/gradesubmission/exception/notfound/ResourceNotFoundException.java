@@ -1,4 +1,4 @@
-package com.jrinehuls.gradesubmission.exception;
+package com.jrinehuls.gradesubmission.exception.notfound;
 
 import org.springframework.http.HttpStatus;
 

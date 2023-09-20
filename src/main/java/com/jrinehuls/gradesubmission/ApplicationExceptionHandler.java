@@ -2,6 +2,10 @@ package com.jrinehuls.gradesubmission;
 
 
 import com.jrinehuls.gradesubmission.exception.*;
+import com.jrinehuls.gradesubmission.exception.notfound.CourseNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.ResourceNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.StudentNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,6 +34,9 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponse> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
         ArrayList<String> messages = new ArrayList<>();
+        if (ex.getMessage().contains("Unique index or primary key violation")) {
+            messages.add("Unique index or primary key violation");
+        }
         messages.add(ex.getMessage());
         ErrorResponse response = new ErrorResponse(messages);
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);

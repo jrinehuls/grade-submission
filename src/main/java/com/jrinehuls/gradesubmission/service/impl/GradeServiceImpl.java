@@ -2,7 +2,7 @@ package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
 
-import com.jrinehuls.gradesubmission.exception.GradeNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
 import com.jrinehuls.gradesubmission.model.Student;
