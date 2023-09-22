@@ -2,6 +2,7 @@ package com.jrinehuls.gradesubmission.model;
 
 import com.jrinehuls.gradesubmission.annotations.Score;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @NoArgsConstructor
@@ -19,6 +20,7 @@ public class Grade {
     private Long id;
 
     @Score
+    @NotNull(message = "Score cannot be null")
     @Column(nullable = false)
     private String score;
 
@@ -26,7 +28,7 @@ public class Grade {
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "course_id")
     private Course course;
 
