@@ -1,5 +1,6 @@
 package com.jrinehuls.gradesubmission.controller;
 
+import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.service.StudentService;
 import jakarta.validation.Valid;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -38,6 +40,12 @@ public class StudentController {
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping(value = "/{studentId}/courses", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Set<Course>> getEnrolledCourses(@PathVariable Long studentId) {
+        Set<Course> courses = studentService.getEnrolledCourses(studentId);
+        return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
 }

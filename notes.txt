@@ -7,6 +7,17 @@ Seems like @NonNull from lombok takes precedence over jakarta validators.
 
 Do @RequestBody and @RequestBody call getters and setters?
 
+@ManyToMany should use Set instead of List to keep join table records unique. Can't have student enrolled in same course 2 times.
+
+@ManyToOne(optional = false) means child table must accept parent PK as FK; cannot be null
+
+@JoinTable(joinColumns =
+@JoinColumn(name="what you want the column to be named that references the id in the class this annotation is in,
+            referencedColumnName="The name of the id column in this class"),
+            inverseJoinColumns =
+@JoinColumn(name="what you want the column to be named that references the id of the other class in the relationship,
+            referencedColumnName="The name of the id column in the other class"),
+
 Could not find or load main class: open terminal -> run ./mvnw clean
 
 Child table manages FK. In this case, one student has many grades. Student is parent, grade is child.
@@ -40,12 +51,23 @@ What if a birthdate is not formatted yyyy-MM-dd, yyyy/MM/dd, or is null, or not 
 
 Add update routes for students and courses.
 
+When trying to enroll student in course, let user know student is already enrolled.
+
+Add these routes to Postman at home:
+    Course:
+        PUT Enroll Student http://localhost:8080/course/:courseId/student/:studentId
+        GET Enrolled Students http://localhost:8080/course/:courseId/students
+    Student:
+        GET Enrolled Courses http://localhost:8080/student/:studentId/courses
+
+Maybe Remove RequiredArgsConstructor and manually make the ones used in CL runner, then remove @NonNull and add @NotNull
+
 Find a way to update grade not only for score, but course and student too (Maybe query params, if body not achievable).
     For body, maybe add student id and course id to grade entity as optional constructor args. If not present, set to
     values in path variable, else, set to values in request. In impl set values using setters.
 
 Spring security (Basic for practice, then JWT instead)
 
-Paused at lesson 200
+Paused at lesson 205
 
 https://www.learnthepart.com/

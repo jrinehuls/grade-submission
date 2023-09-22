@@ -1,6 +1,7 @@
 package com.jrinehuls.gradesubmission.controller;
 
 import com.jrinehuls.gradesubmission.model.Course;
+import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.service.CourseService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 @AllArgsConstructor
@@ -37,6 +39,18 @@ public class CourseController {
     @GetMapping("/all")
     public ResponseEntity<List<Course>> getCourses() {
         return new ResponseEntity<>(courseService.getCourses(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{courseId}/student/{studentId}")
+    public ResponseEntity<Course> enrollStudentInCourse(@PathVariable Long courseId, @PathVariable Long studentId) {
+        Course course = courseService.enrollStudentInCourse(courseId, studentId);
+        return new ResponseEntity<>(course, HttpStatus.OK);
+    }
+
+    @GetMapping("/{courseId}/students")
+    public ResponseEntity<Set<Student>> getEnrolledStudents(@PathVariable Long courseId) {
+        Set<Student> students = courseService.getEnrolledStudents(courseId);
+        return new ResponseEntity<>(students, HttpStatus.OK);
     }
 
 }

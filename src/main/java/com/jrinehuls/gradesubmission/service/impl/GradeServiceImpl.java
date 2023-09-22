@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jrinehuls.gradesubmission.exception.conflict.GradeCollisionException;
 import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.StudentNotEnrolledException;
 import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Grade;
 import com.jrinehuls.gradesubmission.model.Student;
@@ -33,6 +34,9 @@ public class GradeServiceImpl implements GradeService {
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
         Student student = studentService.getStudent(studentId); // In 185, he called studentRepository
         Course course = courseService.getCourse(courseId);
+        if (!course.getStudents().contains(student)) {
+            throw new StudentNotEnrolledException(studentId, courseId);
+        }
         grade.setStudent(student);
         grade.setCourse(course);
         try {

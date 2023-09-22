@@ -5,10 +5,7 @@ import com.jrinehuls.gradesubmission.exception.*;
 import com.jrinehuls.gradesubmission.exception.conflict.CourseCollisionException;
 import com.jrinehuls.gradesubmission.exception.conflict.GradeCollisionException;
 import com.jrinehuls.gradesubmission.exception.conflict.ResourceCollisionException;
-import com.jrinehuls.gradesubmission.exception.notfound.CourseNotFoundException;
-import com.jrinehuls.gradesubmission.exception.notfound.GradeNotFoundException;
-import com.jrinehuls.gradesubmission.exception.notfound.ResourceNotFoundException;
-import com.jrinehuls.gradesubmission.exception.notfound.StudentNotFoundException;
+import com.jrinehuls.gradesubmission.exception.notfound.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,7 +23,8 @@ import java.util.ArrayList;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({StudentNotFoundException.class, CourseNotFoundException.class, GradeNotFoundException.class})
+    @ExceptionHandler({StudentNotFoundException.class, CourseNotFoundException.class,
+            GradeNotFoundException.class, StudentNotEnrolledException.class})
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
         ArrayList<String> messages = new ArrayList<>();
         messages.add(ex.getMessage());

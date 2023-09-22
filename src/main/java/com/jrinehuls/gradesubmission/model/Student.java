@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -41,5 +42,13 @@ public class Student {
     @JsonIgnore // If not here, would call grades, which calls student, which calls grades, which calls student
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL) // student because it's the variable name of the FK in the child table
     private List<Grade> grades;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "course_student",
+            joinColumns = {@JoinColumn(name ="student_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name ="course_id", referencedColumnName = "id")}
+    )
+    private Set<Course> courses;
 
 }

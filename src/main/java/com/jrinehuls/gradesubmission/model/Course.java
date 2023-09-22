@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -36,5 +37,13 @@ public class Course {
     @JsonIgnore
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Grade> grades;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "course_student",
+            joinColumns = {@JoinColumn(name ="course_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name ="student_id", referencedColumnName = "id")}
+    )
+    private Set<Student> students;
 
 }

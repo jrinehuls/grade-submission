@@ -1,8 +1,10 @@
 package com.jrinehuls.gradesubmission.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.jrinehuls.gradesubmission.exception.notfound.StudentNotFoundException;
+import com.jrinehuls.gradesubmission.model.Course;
 import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.repository.StudentRepository;
 import com.jrinehuls.gradesubmission.service.StudentService;
@@ -34,6 +36,12 @@ public class StudentServiceImpl implements StudentService {
     public void deleteStudent(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException(id));
         studentRepository.deleteById(student.getId());
+    }
+
+    @Override
+    public Set<Course> getEnrolledCourses(Long studentID) {
+        Student student = this.getStudent(studentID);
+        return student.getCourses();
     }
 
 }
