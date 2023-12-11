@@ -5,6 +5,7 @@ import com.jrinehuls.gradesubmission.model.Student;
 import com.jrinehuls.gradesubmission.service.StudentService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,9 @@ public class StudentController {
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Student>> getStudents() {
-        return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
+        HttpHeaders headers = new HttpHeaders();
+        // headers.add("Access-Control-Allow-Origin", "http://localhost:5173");
+        return new ResponseEntity<>(studentService.getStudents(), headers, HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
